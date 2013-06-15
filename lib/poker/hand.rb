@@ -9,10 +9,11 @@ module Poker
       Pair
     ]
 
-    attr_reader :raw_hand_data
+    attr_reader :raw_hand_data, :card_factory
 
     def initialize(hand, opts={})
       @raw_hand_data = hand
+      @card_factory = opts[:card_factory] || Card.public_method(:new)
       @category = opts[:category]
     end
 
@@ -35,6 +36,12 @@ module Poker
     def category
       @category ||= CATEGORY_CLASSES.reverse.detect { |category_class|
         category_class.includes?(self)
+      }
+    end
+
+    def cards
+      @cards ||= raw_hand_data.map { |hand|
+        card_factory.call(hand)
       }
     end
   end
