@@ -10,7 +10,7 @@ module Poker
     def compare(lines)
       line_parser.lines_to_hand_pairs(lines).each do |hand_pair|
         stdout.puts hand_pair.to_s
-        stdout.puts hand_pair.winner
+        stdout.puts hand_pair.winner.to_s
       end
     end
   end

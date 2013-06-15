@@ -44,5 +44,9 @@ module Poker
         card_factory.call(hand)
       }
     end
+
+    def to_s
+      raw_hand_data.join ' '
+    end
   end
 end
