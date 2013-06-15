@@ -22,4 +22,20 @@ describe Poker::Card do
       end
     end
   end
+
+  describe "#suit" do
+    card_codes_to_suits = {
+      '2H' => 'H',
+      'TD' => 'D',
+      'AS' => 'S',
+      '5C' => 'C'
+    }
+
+    card_codes_to_suits.each do |card_code, suit|
+      it "should return #{suit} when instantiated with card code #{card_code}" do
+        card = Poker::Card.new(card_code)
+        card.suit.should == suit
+      end
+    end
+  end
 end

@@ -11,6 +11,10 @@ module Poker
       VALUES.find_index value_code
     end
 
+    def suit
+      card_code[1]
+    end
+
     def >(other_card)
       self.to_i > other_card.to_i
     end
