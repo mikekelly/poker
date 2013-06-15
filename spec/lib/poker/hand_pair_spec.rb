@@ -25,5 +25,21 @@ describe Poker::HandPair do
       pair = Poker::HandPair.new(hand_data_stubs, hand_factory: hand_factory)
       pair.winner.should == first_hand
     end
+
+    it "returns the first hand if its greater than the second" do
+      first_hand = mock(:first_hand)
+      hand_factory = mock(:hand_factory)
+
+      second_hand = stub
+      hand_data_stubs = [stub, stub]
+
+      hand_factory.should_receive(:call).with(hand_data_stubs[0]).and_return(first_hand)
+      hand_factory.should_receive(:call).with(hand_data_stubs[1]).and_return(second_hand)
+
+      first_hand.should_receive(:>).with(second_hand).and_return(false)
+
+      pair = Poker::HandPair.new(hand_data_stubs, hand_factory: hand_factory)
+      pair.winner.should == second_hand
+    end
   end
 end
