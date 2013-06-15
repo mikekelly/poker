@@ -8,7 +8,7 @@ module Poker
     end
 
     def to_i
-      VALUES.find_index value_code
+      VALUES.find_index(value_code) or raise "Invalid card code: #{card_code}"
     end
 
     def suit
