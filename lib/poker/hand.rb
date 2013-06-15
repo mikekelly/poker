@@ -17,17 +17,23 @@ module Poker
     end
 
     def >(other_hand)
-      self.category_rank > other_hand.category_rank
+      if self.category == other_hand.category
+        self.within_category > other_hand.within_category
+      else
+        self.category_rank > other_hand.category_rank
+      end
     end
 
     def category_rank
       CATEGORY_CLASSES.find_index(category).to_i
     end
 
-    private
+    def within_category
+      category.new self
+    end
 
     def category
-      @category ||= CATEGORY_CLASSES.detect { |category_class|
+      @category ||= CATEGORY_CLASSES.reverse.detect { |category_class|
         category_class.includes?(self)
       }
     end

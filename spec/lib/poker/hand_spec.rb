@@ -18,5 +18,20 @@ describe Poker::Hand do
 
       (hand > other_hand).should be_false
     end
+
+    it "when the category rank is the same, it wraps itself in the category class and asks that instead" do
+      category = mock(:category)
+      categorised_hand = mock(:categorised_hand)
+      categorised_other = stub
+
+      hand = Poker::Hand.new stub, category: category
+      other_hand = Poker::Hand.new stub, category: category
+
+      category.should_receive(:new).with(hand).and_return(categorised_hand)
+      category.should_receive(:new).with(other_hand).and_return(categorised_other)
+      categorised_hand.should_receive(:>).with(categorised_other).and_return(true)
+
+      (hand > other_hand).should be_true
+    end
   end
 end
