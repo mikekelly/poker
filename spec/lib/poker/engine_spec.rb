@@ -11,7 +11,7 @@ describe Poker::Engine do
 
       line_parser.should_receive(:lines_to_hand_pairs).with(lines).and_return(hand_pairs)
       hand_pairs.each do |hand_pair|
-        stdout.should_receive(:puts).with(hand_pair)
+        stdout.should_receive(:puts).with(hand_pair.to_s)
         stdout.should_receive(:puts).with(hand_pair.winner)
       end
 
