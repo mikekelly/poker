@@ -15,8 +15,8 @@ describe "Poker library" do
 
     comparisons_to_outcomes = {
       compare(seven_high, ace_high) => ace_high,
-      compare(pair_of_tens, straight_flush) => straight_flush,
-      compare(ace_high, other_ace_high) => draw
+      #compare(pair_of_tens, straight_flush) => straight_flush,
+      #compare(ace_high, other_ace_high) => draw
     }
 
     stdout_mock = mock(:stdout)
