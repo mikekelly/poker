@@ -12,7 +12,13 @@ module Poker
     end
 
     def winner
-      first_hand > second_hand ? first_hand : second_hand
+      if first_hand > second_hand
+        first_hand
+      elsif second_hand > first_hand
+        second_hand
+      else
+        NullHand.new
+      end
     end
 
     private
@@ -28,5 +34,8 @@ module Poker
     def second_hand
       hands[1]
     end
+  end
+
+  class NullHand
   end
 end
