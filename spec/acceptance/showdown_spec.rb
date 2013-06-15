@@ -15,6 +15,7 @@ describe "Poker library" do
 
     comparisons_to_outcomes = {
       compare(seven_high, ace_high) => ace_high,
+      compare(other_ace_high, pair_of_tens) => pair_of_tens,
       #compare(pair_of_tens, straight_flush) => straight_flush,
       #compare(ace_high, other_ace_high) => draw
     }
