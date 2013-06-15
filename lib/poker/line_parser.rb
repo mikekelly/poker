@@ -7,7 +7,7 @@ module Poker
     end
 
     def lines_to_hand_pairs(lines)
-      lines.each do |line|
+      lines.map do |line|
         hand_pair_factory.call parse_line_to_array line
       end
     end
