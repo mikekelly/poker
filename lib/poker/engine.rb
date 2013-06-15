@@ -2,7 +2,7 @@ module Poker
   class Engine
     attr_reader :stdout, :line_parser
 
-    def initialize(opts)
+    def initialize(opts={})
       @stdout = opts[:stdout] || $stdout
       @line_parser = opts[:line_parser] || LineParser.new
     end
