@@ -9,7 +9,7 @@ describe "Poker library" do
     seven_high = '2H 3H 4D 6S 7S'
     ace_high = '2H 3H 4D 6S AS'
     other_ace_high = '2D 3D 5D 9S AD'
-    pair_of_tens = '10D 10S 2H 3H 4D'
+    pair_of_tens = 'TD TS 2H 3H 4D'
     straight_flush = '2H 3H 4H 5H 6H'
     draw = 'DRAW'
 
