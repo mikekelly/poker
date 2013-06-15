@@ -1,3 +1,5 @@
+require 'poker'
+
 describe "Poker library" do
   def compare(a,b)
     "#{a} vs #{b}"
@@ -23,5 +25,9 @@ describe "Poker library" do
       stdout_mock.should_receive(:puts).with(comparison)
       stdout_mock.should_receive(:puts).with(outcome)
     end
+
+    lines = comparisons_to_outcomes.keys
+
+    Poker::Engine.new(stdout: stdout_mock).compare(lines)
   end
 end
