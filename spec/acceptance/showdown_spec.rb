@@ -23,6 +23,8 @@ describe "Poker library" do
     trips = '5S 5D 5H 7S 8D'
     better_trips = '6S 6D 6H 7S 8D'
 
+    straight = '2D 3H 4C 5S 6D'
+
     straight_flush = '2H 3H 4H 5H 6H'
     draw = 'DRAW'
 
@@ -38,6 +40,7 @@ describe "Poker library" do
       compare(two_pair_better_kicker, two_pair) => two_pair_better_kicker,
       compare(trips, two_pair) => trips,
       compare(better_trips, trips) => better_trips,
+      compare(straight, trips) => straight,
     }
 
     stdout_mock = mock(:stdout)

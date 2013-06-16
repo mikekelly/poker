@@ -8,7 +8,8 @@ module Poker
       HighCard,
       Pair,
       TwoPair,
-      Trips
+      Trips,
+      Straight
     ]
 
     attr_reader :raw_hand_data, :card_factory
