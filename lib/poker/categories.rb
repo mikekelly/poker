@@ -25,12 +25,7 @@ module Poker
       end
 
       def >(other_hand)
-        pair_rank > other_hand.pair_rank ||
-          HighCard.new(self.without_pair) > HighCard.new(other_hand.without_pair)
-      end
-
-      def without_pair
-        Hand.new(non_pair_card_codes)
+        pair_rank > other_hand.pair_rank || kickers > other_hand.kickers
       end
 
       def pair_rank
@@ -39,14 +34,6 @@ module Poker
 
       def the_pair
         cards_grouped_by_value.find { |value_group| value_group.count == 2 }
-      end
-
-      private
-
-      def non_pair_card_codes
-        cards_grouped_by_value.reject { |value_group|
-          value_group.count == 2
-        }.flatten.map(&:card_code)
       end
     end
 
@@ -57,7 +44,11 @@ module Poker
 
       def >(other_hand)
         if top_pair_rank == other_hand.top_pair_rank
-          bottom_pair_rank > other_hand.bottom_pair_rank
+          if bottom_pair_rank == other_hand.bottom_pair_rank
+            kickers > other_hand.kickers
+          else
+            bottom_pair_rank > other_hand.bottom_pair_rank
+          end
         else
           top_pair_rank > other_hand.top_pair_rank
         end

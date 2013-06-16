@@ -53,5 +53,17 @@ module Poker
     def cards_grouped_by_value
       cards.group_by { |card| card.to_i }.values
     end
+
+    def kickers
+      HighCard.new Hand.new kicker_codes
+    end
+
+    private
+
+    def kicker_codes
+      cards_grouped_by_value.select { |value_group|
+        value_group.count == 1
+      }.flatten.map(&:card_code)
+    end
   end
 end
