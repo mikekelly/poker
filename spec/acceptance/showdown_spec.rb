@@ -16,6 +16,7 @@ describe "Poker library" do
     pair_of_jacks = 'JH JC 2D 3S 4H'
 
     two_pair = '4H 4D 8H 8D 6S'
+    better_top_pair = '4S 4C 9H 9D 6D'
 
     straight_flush = '2H 3H 4H 5H 6H'
     draw = 'DRAW'
@@ -27,6 +28,7 @@ describe "Poker library" do
       compare(equal_pair_of_tens, pair_of_tens) => draw,
       compare(losing_pair_of_tens, pair_of_tens) => pair_of_tens,
       compare(two_pair, pair_of_tens) => two_pair,
+      compare(better_top_pair, two_pair) => better_top_pair,
     }
 
     stdout_mock = mock(:stdout)
