@@ -49,5 +49,18 @@ module Poker
         }.flatten.map(&:card_code)
       end
     end
+
+    class TwoPair < SimpleDelegator
+      def self.includes?(hand)
+        new(hand).pairs.count == 2
+      end
+
+      def >(other_hand)
+      end
+
+      def pairs
+        cards_grouped_by_value.select { |value_group| value_group.count == 2 }
+      end
+    end
   end
 end

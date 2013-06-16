@@ -6,7 +6,8 @@ module Poker
 
     CATEGORY_CLASSES = [
       HighCard,
-      Pair
+      Pair,
+      TwoPair
     ]
 
     attr_reader :raw_hand_data, :card_factory
