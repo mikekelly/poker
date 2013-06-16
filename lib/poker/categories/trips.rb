@@ -4,7 +4,7 @@ module Poker
   module Categories
     class Trips < SimpleDelegator
       def self.includes?(hand)
-        !!new(hand).three_of_a_kind
+        !!hand.three_of_a_kind
       end
 
       def >(other_hand)
@@ -13,10 +13,6 @@ module Poker
 
       def three_of_a_kind_rank
         three_of_a_kind.first.to_i
-      end
-
-      def three_of_a_kind
-        cards_grouped_by_value.find { |value_group| value_group.count == 3 }
       end
     end
   end

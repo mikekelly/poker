@@ -10,7 +10,8 @@ module Poker
       TwoPair,
       Trips,
       Straight,
-      Flush
+      Flush,
+      FullHouse
     ]
 
     attr_reader :raw_hand_data, :card_factory
@@ -67,6 +68,14 @@ module Poker
 
     def kickers
       HighCard.new Hand.new kicker_codes
+    end
+
+    def pair
+      cards_grouped_by_value.find { |value_group| value_group.count == 2 }
+    end
+
+    def three_of_a_kind
+      cards_grouped_by_value.find { |value_group| value_group.count == 3 }
     end
 
     private

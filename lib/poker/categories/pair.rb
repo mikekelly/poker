@@ -4,7 +4,7 @@ module Poker
   module Categories
     class Pair < SimpleDelegator
       def self.includes?(hand)
-        !!new(hand).the_pair
+        !!hand.pair
       end
 
       def >(other_hand)
@@ -12,11 +12,7 @@ module Poker
       end
 
       def pair_rank
-        the_pair.first.to_i
-      end
-
-      def the_pair
-        cards_grouped_by_value.find { |value_group| value_group.count == 2 }
+        pair.first.to_i
       end
     end
   end
