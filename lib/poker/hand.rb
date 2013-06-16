@@ -48,6 +48,10 @@ module Poker
       }
     end
 
+    def ordered_cards
+      cards.sort_by { |card| card.to_i }
+    end
+
     def to_s
       raw_hand_data.join ' '
     end
