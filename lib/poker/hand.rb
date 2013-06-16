@@ -78,6 +78,10 @@ module Poker
       cards_grouped_by_value.find { |value_group| value_group.count == 3 }
     end
 
+    def three_of_a_kind_rank
+      three_of_a_kind.first.to_i
+    end
+
     private
 
     def kicker_codes

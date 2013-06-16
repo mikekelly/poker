@@ -10,10 +10,6 @@ module Poker
       def >(other_hand)
         three_of_a_kind_rank > other_hand.three_of_a_kind_rank
       end
-
-      def three_of_a_kind_rank
-        three_of_a_kind.first.to_i
-      end
     end
   end
 end
