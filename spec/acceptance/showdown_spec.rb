@@ -9,9 +9,12 @@ describe "Poker library" do
     seven_high = '2H 3H 4D 6S 7S'
     ace_high = '2H 3H 4D 6S AS'
     other_ace_high = '2D 3D 5D 9S AD'
-    pair_of_tens = 'TD TS 2H 3H 4D'
+
+    pair_of_tens = 'TD TS 2H 4H AD'
+    equal_pair_of_tens = 'TH TC 2D 4S AH'
+    losing_pair_of_tens = 'TH TC 2D 3S AH'
     pair_of_jacks = 'JH JC 2D 3S 4H'
-    equal_pair_of_tens = 'TH TC 2D 3S 4H'
+
     straight_flush = '2H 3H 4H 5H 6H'
     draw = 'DRAW'
 
@@ -20,6 +23,7 @@ describe "Poker library" do
       compare(other_ace_high, pair_of_tens) => pair_of_tens,
       compare(pair_of_jacks, pair_of_tens) => pair_of_jacks,
       compare(equal_pair_of_tens, pair_of_tens) => draw,
+      compare(losing_pair_of_tens, pair_of_tens) => pair_of_tens,
       #compare(pair_of_tens, straight_flush) => straight_flush,
       #compare(ace_high, other_ace_high) => draw
     }

@@ -9,9 +9,9 @@ module Poker
 
       def >(other_hand)
         differing_pair = ordered_cards.zip(other_hand.ordered_cards).find { |pair|
-          pair[0] != pair[1]
+          pair[0].to_i != pair[1].to_i
         }
-        differing_pair[0] > differing_pair[1]
+        differing_pair && differing_pair[0] > differing_pair[1]
       end
 
       def ordered_cards
@@ -25,7 +25,12 @@ module Poker
       end
 
       def >(other_hand)
-        pair_rank > other_hand.pair_rank
+        pair_rank > other_hand.pair_rank ||
+          HighCard.new(self.without_pair) > HighCard.new(other_hand.without_pair)
+      end
+
+      def without_pair
+        Hand.new(non_pair_card_codes)
       end
 
       def pair_rank
@@ -37,6 +42,13 @@ module Poker
       end
 
       private
+
+      def non_pair_card_codes
+        cards_grouped_by_value.reject { |value_group|
+          value_group.count == 2
+        }.flatten.map(&:card_code)
+      end
+
 
       def cards_grouped_by_value
         cards.group_by { |card| card.to_i }.values
