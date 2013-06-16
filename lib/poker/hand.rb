@@ -48,5 +48,9 @@ module Poker
     def to_s
       raw_hand_data.join ' '
     end
+
+    def cards_grouped_by_value
+      cards.group_by { |card| card.to_i }.values
+    end
   end
 end

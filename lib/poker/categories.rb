@@ -48,11 +48,6 @@ module Poker
           value_group.count == 2
         }.flatten.map(&:card_code)
       end
-
-
-      def cards_grouped_by_value
-        cards.group_by { |card| card.to_i }.values
-      end
     end
   end
 end
