@@ -37,5 +37,8 @@ module Poker
   end
 
   class NullHand
+    def to_s
+      "DRAW"
+    end
   end
 end
