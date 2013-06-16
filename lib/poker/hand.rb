@@ -9,7 +9,8 @@ module Poker
       Pair,
       TwoPair,
       Trips,
-      Straight
+      Straight,
+      Flush
     ]
 
     attr_reader :raw_hand_data, :card_factory
@@ -58,6 +59,10 @@ module Poker
 
     def cards_grouped_by_value
       cards.group_by { |card| card.to_i }.values
+    end
+
+    def cards_grouped_by_suit
+      cards.group_by { |card| card.suit }.values
     end
 
     def kickers
