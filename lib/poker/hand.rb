@@ -12,7 +12,8 @@ module Poker
       Straight,
       Flush,
       FullHouse,
-      FourOfAKind
+      FourOfAKind,
+      StraightFlush
     ]
 
     attr_reader :raw_hand_data, :card_factory
