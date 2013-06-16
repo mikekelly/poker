@@ -56,11 +56,19 @@ module Poker
       end
 
       def >(other_hand)
-        top_pair_rank > other_hand.top_pair_rank
+        if top_pair_rank == other_hand.top_pair_rank
+          bottom_pair_rank > other_hand.bottom_pair_rank
+        else
+          top_pair_rank > other_hand.top_pair_rank
+        end
       end
 
       def pairs
         cards_grouped_by_value.select { |value_group| value_group.count == 2 }
+      end
+
+      def bottom_pair_rank
+        bottom_pair.first.to_i
       end
 
       def top_pair_rank
@@ -69,8 +77,16 @@ module Poker
 
       private
 
+      def sorted_pairs
+        pairs.sort_by { |pair| pair.first.to_i }
+      end
+
       def top_pair
-        pairs.sort_by { |pair| pair.first.to_i }.last
+        sorted_pairs.last
+      end
+
+      def bottom_pair
+        sorted_pairs.first
       end
     end
   end
