@@ -11,7 +11,8 @@ module Poker
       Trips,
       Straight,
       Flush,
-      FullHouse
+      FullHouse,
+      FourOfAKind
     ]
 
     attr_reader :raw_hand_data, :card_factory
