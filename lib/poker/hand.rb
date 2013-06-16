@@ -84,6 +84,14 @@ module Poker
       three_of_a_kind.first.to_i
     end
 
+    def top_card
+      ordered_cards.last
+    end
+
+    def top_card_rank
+      top_card.to_i
+    end
+
     private
 
     def kicker_codes
