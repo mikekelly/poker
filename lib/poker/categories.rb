@@ -80,5 +80,15 @@ module Poker
         sorted_pairs.first
       end
     end
+
+    class Trips < SimpleDelegator
+      def self.includes?(hand)
+        !!new(hand).three_of_a_kind
+      end
+
+      def three_of_a_kind
+        cards_grouped_by_value.find { |value_group| value_group.count == 3 }
+      end
+    end
   end
 end
