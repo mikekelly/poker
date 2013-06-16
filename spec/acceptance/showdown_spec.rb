@@ -33,6 +33,7 @@ describe "Poker library" do
     better_full_house = '3H 3D 5D 5C 5S'
 
     four_of_a_kind = '4D 4H 4S 4C 6D'
+    better_four_of_a_kind = '6D 6S 6H 6C 4D'
 
     straight_flush = '2H 3H 4H 5H 6H'
     draw = 'DRAW'
@@ -56,6 +57,7 @@ describe "Poker library" do
       compare(flush, full_house) => full_house,
       compare(better_full_house, full_house) => better_full_house,
       compare(four_of_a_kind, full_house) => four_of_a_kind,
+      compare(better_four_of_a_kind, four_of_a_kind) => better_four_of_a_kind,
     }
 
     stdout_mock = mock(:stdout)
