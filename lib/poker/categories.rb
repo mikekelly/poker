@@ -21,13 +21,25 @@ module Poker
 
     class Pair < SimpleDelegator
       def self.includes?(hand)
-        cards_grouped_by_value = hand.cards.group_by { |card| card.to_i }.values
-        cards_grouped_by_value.select { |cards_of_same_value|
-            cards_of_same_value.count == 2
-        }.count == 1
+        !!new(hand).the_pair
       end
 
       def >(other_hand)
+        pair_rank > other_hand.pair_rank
+      end
+
+      def pair_rank
+        the_pair.first.to_i
+      end
+
+      def the_pair
+        cards_grouped_by_value.find { |value_group| value_group.count == 2 }
+      end
+
+      private
+
+      def cards_grouped_by_value
+        cards.group_by { |card| card.to_i }.values
       end
     end
   end
